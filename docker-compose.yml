@@ -8,9 +8,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./Backend:/index
+      - ./Backend:/app
     depends_on:
       - mongo
+    working_dir: /app
+    command: ["node", "index.js"]
 
   frontend:
     build:
@@ -22,9 +24,11 @@ services:
       - ./Frontend:/app
     depends_on:
       - backend
+    working_dir: /app
+    command: ["npm", "run", "dev"]
 
   mongo:
-    image: mongo
+    image: mongo:4.4   
     ports:
       - "27017:27017"
     volumes:
