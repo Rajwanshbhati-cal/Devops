@@ -14,8 +14,7 @@ services:
       dockerfile: Dockerfile.Backend
     ports:
       - "3000:3000"
-    volumes:
-      - ./Backend:/app
+    # ❗ No volume in production build
     depends_on:
       - mongo
 
@@ -25,8 +24,6 @@ services:
       dockerfile: Dockerfile.Frontend
     ports:
       - "5173:5173"
-    volumes:
-      - ./Frontend:/app
     depends_on:
       - backend
 
