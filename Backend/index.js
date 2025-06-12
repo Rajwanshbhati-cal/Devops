@@ -1,5 +1,4 @@
 
-
 import express from "express";
 import mongoose from "mongoose";
 import userModel from "./user.model.js";
@@ -51,4 +50,3 @@ app.post("/add-names", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
