@@ -1,13 +1,13 @@
+# Dockerfile.Frontend
 
-FROM node:18
+FROM node:18-alpine
 
-WORKDIR /src
+WORKDIR /app
 
-COPY . .
-
-RUN npm install -g vite
-
+COPY Frontend/package*.json ./
 RUN npm install
+
+COPY Frontend/ .
 
 EXPOSE 5173
 

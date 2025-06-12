@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"
-
+import axios from "axios";
 
 function App() {
-
-    const [text, setText] = useState("");
-
+  const [text, setText] = useState("");
   const [message, setMessage] = useState([]);
 
-   async function getData() {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
     try {
       const res = await axios.get("http://localhost:3000/get-names");
       setMessage(res.data);
@@ -17,27 +18,17 @@ function App() {
     }
   }
 
-useEffect(() => {
-  getData();
-}, []);
+  async function handleSubmit() {
+    if (text === "") return;
 
-
-
- async function handelSubmit(){
-
-  if(text===""){
-    return;
-  }
- 
-try {
+    try {
       await axios.post("http://localhost:3000/add-names", { name: text });
-      setText(""); 
-      getData(); 
+      setText("");
+      getData();
     } catch (err) {
       console.error("Failed to send message", err);
     }
   }
-
 
   return (
     <div>
@@ -47,13 +38,13 @@ try {
         onChange={(e) => setText(e.target.value)}
         placeholder="Type message..."
       />
-      <button onClick={handelSubmit} >Send</button>
-      
-      <div>
-        {message.map((item,index)=>{
-          <li key={index} >{item}</li>
-        })}
-      </div>
+      <button onClick={handleSubmit}>Send</button>
+
+      <ul>
+        {message.map((item, index) => (
+          <li key={index}>{item.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
