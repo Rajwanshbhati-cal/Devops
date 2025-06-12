@@ -1,21 +1,15 @@
-# # Dockerfile.Backend
+# Dockerfile.Backend
 
-# FROM node:18-alpine
+FROM node:18-alpine
 
-# WORKDIR /app
-
-# COPY Backend/package*.json ./
-# RUN npm install
-
-# COPY Backend/ .
-
-# EXPOSE 3000
-
-# CMD ["node", "index.js"]
-# Backend Dockerfile
-FROM node:18.20.8
 WORKDIR /app
-COPY package*.json ./  
-RUN npm install        
-COPY . .              
+
+# COPY FROM actual relative path to inside the container
+COPY Backend/package*.json ./
+RUN npm install
+
+COPY Backend/ .
+
+EXPOSE 3000
+
 CMD ["node", "index.js"]
