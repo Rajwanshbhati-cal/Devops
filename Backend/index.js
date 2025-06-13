@@ -5,7 +5,7 @@ import cors   from "cors"
 import userModel from "./user.model.js"
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
