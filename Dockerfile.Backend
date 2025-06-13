@@ -1,14 +1,13 @@
 # Dockerfile.Backend
 
-FROM node:18-alpine
+FROM node
 
 WORKDIR /app
 
 # COPY FROM actual relative path to inside the container
-COPY Backend/package*.json ./
+COPY Backend/ .
 RUN npm install
 
-COPY Backend/ .
 
 EXPOSE 3000
 
